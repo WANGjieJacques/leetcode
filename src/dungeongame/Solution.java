@@ -1,6 +1,8 @@
 package dungeongame;
 
 public class Solution {
+	private int globalMin;
+	private int min;
 	public static void main(String[] args) {
 //		int[][] dungeon = {
 //				{-2, -3, 3},
@@ -12,33 +14,37 @@ public class Solution {
 		System.out.println(min);
 	}
 	public int calculateMinimumHP(int[][] dungeon) {
+		int saveX, saveY, saveHealthPoint;
 		int maxX = dungeon.length - 1;
 		int maxY = dungeon[0].length - 1;
 		int m = 0;
 		int n = 0;
-		if (backtracking(0, 0, 0, maxX, maxY, dungeon)) {
-			return 0;
-		}
-		for (int i = 1;;) {
-			if (backtracking(0, 0, i, maxX, maxY, dungeon)) {
-				m = i;
-				n = i / 2;
-				while (true) {
-					if (backtracking(0, 0, (m + n) / 2, maxX, maxY, dungeon)) {
-						m = (m + n) / 2;
-					} else {
-						n = (m + n) / 2;
-					}
+//		if (backtracking(0, 0, 0, maxX, maxY, dungeon)) {
+//			return 0;
+//		}
+		this.globalMin = Integer.MIN_VALUE;
+		backtracking(0, 0, 0, maxX, maxY, dungeon);
+		return this.globalMin;
+//		for (int i = 1;;) {
+//			if () {
+//				m = i;
+//				n = i / 2;
+//				while (true) {
+//					if (backtracking(0, 0, (m + n) / 2, maxX, maxY, dungeon)) {
+//						m = (m + n) / 2;
+//					} else {
+//						n = (m + n) / 2;
+//					}
 //					System.out.println(m + " " + n);
-					if (m - n <= 1) {
-						return n;
-					}
-				}
+//					if (m - n <= 1) {
+//						return n;
+//					}
+//				}
 				
-			}
-			i = i * 2;
+//			}
+//			i = i * 2;
 //			System.out.println(i);
-		}
+//		}
 		
 	}
 	
@@ -50,17 +56,27 @@ public class Solution {
 		
 		
 		healthPoint = healthPoint + dungeon[x][y];
-		if (healthPoint <= 0) {
-			return false;
+		if (healthPoint < globalMin) {
+			return true;
 		}
+		if (healthPoint <= min) {
+			min = healthPoint;
+		}
+		
 		if (x == maxX && y == maxY) {
+			if (globalMin < min) {
+				
+				globalMin = min;
+				System.out.println(min + " " + globalMin);
+			}
+			min = 0;
 			return true;
 		}
 		if (backtracking(x + 1, y, healthPoint, maxX, maxY, dungeon)) {
-			return true;
+//			return true;
 		}
 		if (backtracking(x, y + 1, healthPoint, maxX, maxY, dungeon)) {
-			return true;
+//			return true;
 		}
 		
 		return false;
