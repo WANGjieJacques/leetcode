@@ -551,7 +551,7 @@ public class Solution {
 					}
 					
 					if (shouldBreakJ && shouldBreakJ2) {
-//						shouldBreak = true;
+						shouldBreak = true;
 					}
 				} else {
 					shouldBreak = true;
