@@ -2,7 +2,7 @@ package maxpoints;
 
 public class Solution {
 	//没有考虑可能存在两个点坐标相等。
-	//
+	//算法考虑不全面，对变量何时初始化没有概念。
 	static class Point {
 		int x;
 		int y;
