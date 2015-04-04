@@ -12,17 +12,17 @@ public class Solution {
 		Set<String> dict = new HashSet<>(Arrays.asList("a", "aa", "aaa",
 				"aaaa", "aaaaa", "aaaaaa", "aaaaaaa", "aaaaaaaa", "aaaaaaaaa",
 				"aaaaaaaaaa"));
-//		 Set<String> dict = new
-//		 HashSet<>(Arrays.asList("aa","aaaa"));
-//		 Set<String> dict = new
-//		 HashSet<>(Arrays.asList("abbcbda","cbdaaa","b","dadaaad","dccbbbc","dccadd","ccbdbc","bbca","bacbcdd","a","bacb","cbc","adc","c","cbdbcad","cdbab","db","abbcdbd","bcb","bbdab","aa","bcadb","bacbcb","ca","dbdabdb","ccd","acbb","bdc","acbccd","d","cccdcda","dcbd","cbccacd","ac","cca","aaddc","dccac","ccdc","bbbbcda","ba","adbcadb","dca","abd","bdbb","ddadbad","badb","ab","aaaaa","acba","abbb"));
-//String s = "aaaaaaa";
+		// Set<String> dict = new
+		// HashSet<>(Arrays.asList("aa","aaaa"));
+		// Set<String> dict = new
+		// HashSet<>(Arrays.asList("abbcbda","cbdaaa","b","dadaaad","dccbbbc","dccadd","ccbdbc","bbca","bacbcdd","a","bacb","cbc","adc","c","cbdbcad","cdbab","db","abbcdbd","bcb","bbdab","aa","bcadb","bacbcb","ca","dbdabdb","ccd","acbb","bdc","acbccd","d","cccdcda","dcbd","cbccacd","ac","cca","aaddc","dccac","ccdc","bbbbcda","ba","adbcadb","dca","abd","bdbb","ddadbad","badb","ab","aaaaa","acba","abbb"));
+		// String s = "aaaaaaa";
 		String s = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab";
-//		 String s = "acaaaaabbbdbcccdcdaadcdccacbcccabbbbcdaaaaaadb";
+		// String s = "acaaaaabbbdbcccdcdaadcdccacbcccabbbbcdaaaaaadb";
 		// String s =
 		// "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb";
 		long start = System.currentTimeMillis();
-//		 System.out.println(new Solution().wordBreak(s, dict));
+		// System.out.println(new Solution().wordBreak(s, dict));
 		System.out.println(System.currentTimeMillis() - start);
 
 		long start1 = System.currentTimeMillis();
@@ -94,22 +94,16 @@ public class Solution {
 				continue;
 			if (a.equals(s.substring(start, end))) {
 				System.out.println(end);
-				
+
 				Boolean result = aa.get(end);
 				if (result == null) {
-					result = wordBreakHelper(s, dict, end);	
+					result = wordBreakHelper(s, dict, end);
 					aa.put(end, result);
 				}
-				
-				if (result)
-				{
-				
-	
-				return true;
+
+				if (result) {
+					return true;
 				}
-					
-				
-				
 			}
 		}
 		return false;
