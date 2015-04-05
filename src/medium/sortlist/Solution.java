@@ -2,7 +2,7 @@ package medium.sortlist;
 
 public class Solution {
 	public static void main(String[] args) {
-		int num[] = {3,1,4,2};
+		int num[] = {1,2};
 		ListNode node = new ListNode(num[0]);
 		ListNode nextNode = node;
 		for (int i = 1; i < num.length; i++) {
@@ -55,7 +55,7 @@ public class Solution {
 			largePartCurrent.next = null;
 		if (smallPartCurrent != null)
 			smallPartCurrent.next = null;
-//		System.out.println(smallPartHead);
+//		System.out.println(smallPartHead +"|"+ largePartHead);
 		if (smallPartHead != null)
 			smallPartHead = sortList(smallPartHead);
 		if (largePartHead != null)
@@ -64,8 +64,13 @@ public class Solution {
 		while (lastNode != null && lastNode.next != null) {
 			lastNode = lastNode.next;
 		}
-		if (lastNode != null) 
-		    lastNode.next = firstMid;
+		if (lastNode != null) {
+			lastNode.next = firstMid;
+		} else {
+			lastNode = firstMid;
+			smallPartHead = firstMid;
+		}
+		    
 		lastMid.next = largePartHead;
 		return smallPartHead;
 		
