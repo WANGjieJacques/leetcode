@@ -2,7 +2,7 @@ package hard.lrucache;
 
 import java.util.HashMap;
 import java.util.Map;
-
+// 考虑问题不完整，应该先给问题分类，把分类写下来，仔细考虑是否完整。
 public class LRUCache {
     public static void main(String[] args) {
     	LRUCache cache = new LRUCache(1);
@@ -66,9 +66,6 @@ public class LRUCache {
     			lastNode.next = null;
     		} else {
     			existingNode.previous.next = existingNode.next;
-//    			System.out.println(firstNode);
-//    			System.out.println(existingNode);
-//    			System.out.println(lastNode);
     			existingNode.next.previous = existingNode.previous;
     		}
     	}
@@ -79,7 +76,6 @@ public class LRUCache {
     	} else {
     		if (cache.size() >= capacity) {
     			cache.remove(firstNode.pair.key);
-//    			System.out.println("aacache size: " + cache);
     			if (firstNode.next != null) {
     				firstNode = firstNode.next;
             		firstNode.previous = null;
@@ -91,16 +87,7 @@ public class LRUCache {
     		node.previous = lastNode;
     		lastNode.next = node;
     		lastNode = lastNode.next;
-//    		System.out.println("node"+lastNode);
     	}
-//    	if (firstNode == existingNode) {
-//    		if (firstNode.next != null) {
-//    			firstNode = firstNode.next;
-//    			firstNode.previous = null;
-//    		} else {
-//    			firstNode = lastNode;
-//    		}
-//    	}
     	cache.put(key, lastNode);
     }
     
