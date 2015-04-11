@@ -1,43 +1,31 @@
 package hard.maximumgap;
 
-import java.util.Stack;
+import java.util.Arrays;
 
+// 基数排序， 桶排序
 public class Solution {
 
 	public static void main(String[] args) {
-		int [] a = {1,2,5,4,2};
+		int[] a = { 1, 2, 5, 4, 2 };
 		System.out.println(new Solution().maximumGap(a));
 
 	}
-	
-    public int maximumGap(int[] num) {
-    	if (num.length < 2) {
-    		return 0;
-    	}
-    	
-    	int max = 0;
-    	int min = Integer.MAX_VALUE;
-    	int gapLow = 0;
-    	int gapHigh = 0;
-    	Stack<Integer> gapHistory = new Stack<>();
-    	gapHistory.push(0);
-        for (int i = 0; i < num.length; i++) {
-        	int previousMaxGap = gapHistory.push(0);
-        	int currentGap = 0;
-        	if (num[i] < min) {
-        		currentGap = min - num[i];
-        		min = num[i];
-        	} else if (num[i] > max) {
-        		currentGap = num[i]-max;
-        		max = num[i];
-        	} else if (num[i] > gapLow && num[i] < gapHigh) {
-        		currentGap
-        	}
-       
-        	
-        }
-        
-        return max - min;
-    }
+
+	public int maximumGap(int[] num) {
+		if (num.length < 2) {
+			return 0;
+		}
+
+		Arrays.sort(num);
+		int maxGap = 0;
+		for (int i = 0; i < num.length - 1; i++) {
+			int gap = num[i + 1] - num[i];
+			if (gap > maxGap) {
+				maxGap = gap;
+			}
+		}
+
+		return maxGap;
+	}
 
 }

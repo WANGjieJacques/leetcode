@@ -1,8 +1,5 @@
 package hard.dungeongame;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Solution {
 	private int globalMinValue = Integer.MAX_VALUE;
 	private int globalMin;
@@ -408,13 +405,6 @@ public class Solution {
 		}
 	}
 
-	private int getAddedHealth(int x, int y, int[][] array) {
-		if (x < 0 || y < 0) {
-			return 0;
-		}
-		return array[x][y];
-	}
-
 	public int calculateMinimumHP10(int[][] dungeon) {
 		int lengthX = dungeon.length;
 		int lengthY = dungeon[0].length;
@@ -483,30 +473,6 @@ public class Solution {
 			currentHealth = 1;
 		}
 		return currentHealth;
-	}
-
-	private boolean backtracking9(int x, int y, int healthPoint, int maxX,
-			int maxY, int[][] dungeon) {
-		if (x > maxX || y > maxY) {
-			return false;
-		}
-
-		healthPoint = healthPoint + dungeon[x][y];
-
-		if (healthPoint <= 0) {
-			return false;
-		}
-		if (x == maxX && y == maxY) {
-			return true;
-		}
-		if (backtracking9(x + 1, y, healthPoint, maxX, maxY, dungeon)) {
-			return true;
-		}
-		if (backtracking9(x, y + 1, healthPoint, maxX, maxY, dungeon)) {
-			return true;
-		}
-
-		return false;
 	}
 
 	public int calculateMinimumHP8(int[][] dungeon) {
@@ -683,117 +649,6 @@ public class Solution {
 
 		backtracking2(x + 1, y, healthPoint, maxX, maxY, dungeon);
 		backtracking2(x, y + 1, healthPoint, maxX, maxY, dungeon);
-	}
-
-	private int backtracking_(int x, int y, int[][] data, int[][] min,
-			int maxX, int maxY, int[][] dungeon) {
-		// data at i-1,j
-		int dataPreviousI = 0;
-		// data at i, j-1.
-		int dataPreviousJ = 0;
-
-		int minPreviousI = 0;
-		int minPreviousJ = 0;
-
-		for (int i = x; i < maxX; i++) {
-			for (int j = y; j < maxY; j++) {
-
-				if (i > 0) {
-					dataPreviousI = data[i - 1][j];
-					minPreviousI = min[i - 1][j];
-				} else {
-					dataPreviousI = Integer.MIN_VALUE;
-					minPreviousI = Integer.MIN_VALUE;
-				}
-				if (j > 0) {
-					minPreviousJ = min[i][j - 1];
-					dataPreviousJ = data[i][j - 1];
-				} else {
-					dataPreviousJ = Integer.MIN_VALUE;
-					minPreviousJ = Integer.MIN_VALUE;
-				}
-
-				// the first should be all 0.
-				if (i == 0 && j == 0) {
-					minPreviousI = 0;
-					minPreviousJ = 0;
-					dataPreviousI = 0;
-					dataPreviousJ = 0;
-				}
-
-				// abandon the smaller value.
-				int currentMinFromI = dataPreviousI + data[i][j];
-				int currentMinFromJ = dataPreviousJ + data[i][j];
-
-				if (currentMinFromI >= currentMinFromJ
-						&& minPreviousI >= minPreviousJ) {
-					data[i][j] = dataPreviousI + dungeon[i][j];
-					if (minPreviousI > data[i][j]) {
-						min[i][j] = data[i][j];
-					} else {
-						min[i][j] = minPreviousI;
-					}
-				} else if (currentMinFromI <= currentMinFromJ
-						&& minPreviousI <= minPreviousJ) {
-					data[i][j] = dataPreviousJ + dungeon[i][j];
-					if (minPreviousJ > data[i][j]) {
-						min[i][j] = data[i][j];
-					} else {
-						min[i][j] = minPreviousJ;
-					}
-				} else {
-					data[i][j] = dataPreviousI + dungeon[i][j];
-					if (minPreviousI > data[i][j]) {
-						min[i][j] = data[i][j];
-					} else {
-						min[i][j] = minPreviousI;
-					}
-
-					int localMinI = backtracking_(i, j + 1, data, min, maxX,
-							maxY, dungeon);
-
-					data[i][j] = dataPreviousJ + dungeon[i][j];
-					if (minPreviousJ > data[i][j]) {
-						min[i][j] = data[i][j];
-					} else {
-						min[i][j] = minPreviousJ;
-					}
-					int localMinJ = backtracking_(i, j + 1, data, min, maxX,
-							maxY, dungeon);
-
-					int minI;
-					int minJ;
-					if (localMinI < minPreviousI) {
-						minI = localMinI;
-					} else {
-						minI = minPreviousI;
-					}
-					if (localMinJ < minPreviousJ) {
-						minJ = localMinJ;
-					} else {
-						minJ = minPreviousJ;
-					}
-					if (minI > minJ) {
-						data[i][j] = dataPreviousI + dungeon[i][j];
-						if (minPreviousI > data[i][j]) {
-							min[i][j] = data[i][j];
-						} else {
-							min[i][j] = minPreviousI;
-						}
-						;
-					} else {
-						data[i][j] = dataPreviousJ + dungeon[i][j];
-						if (minPreviousJ > data[i][j]) {
-							min[i][j] = data[i][j];
-						} else {
-							min[i][j] = minPreviousJ;
-						}
-					}
-				}
-
-			}
-		}
-		return -min[maxX - 1][maxY - 1] + 1;
 	}
 
 	public int calculateMinimumHP(int[][] dungeon) {

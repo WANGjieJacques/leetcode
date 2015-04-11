@@ -15,7 +15,6 @@ class TreeNode {
 public class BSTIterator {
 	
 	private Stack<Integer> stack = new Stack<>();
-	private TreeNode node;
 	public static void main(String[] args) {
 		TreeNode root4 = new TreeNode(4);
 		TreeNode node1 = new TreeNode(1);
@@ -40,7 +39,6 @@ public class BSTIterator {
 	}
 
 	public BSTIterator(TreeNode root) {
-		this.node = root;
 		this.aa(root);
 	}
 

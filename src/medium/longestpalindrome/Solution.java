@@ -10,9 +10,7 @@ public class Solution {
 	public String longestPalindrome1(String s) {
 		int length = s.length();
 		String longestPalindrome = "";
-		int midpoint = 0;
 		for (int i = 0; i < length; i++) {
-			int startpoint = i;
 		}
 		
 		return longestPalindrome;
